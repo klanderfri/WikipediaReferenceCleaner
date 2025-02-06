@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35527.113 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikipediaReferenceCleaner", "WikipediaReferenceCleaner\WikipediaReferenceCleaner.csproj", "{7FECCABA-35C4-4221-9F7A-AD1C59807DAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikipediaReferenceCleanerTests", "WikipediaReferenceCleanerTests\WikipediaReferenceCleanerTests.csproj", "{EC4B7E6C-2A6F-4561-B720-0F549F4BD7EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7FECCABA-35C4-4221-9F7A-AD1C59807DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FECCABA-35C4-4221-9F7A-AD1C59807DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FECCABA-35C4-4221-9F7A-AD1C59807DAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC4B7E6C-2A6F-4561-B720-0F549F4BD7EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4B7E6C-2A6F-4561-B720-0F549F4BD7EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4B7E6C-2A6F-4561-B720-0F549F4BD7EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4B7E6C-2A6F-4561-B720-0F549F4BD7EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,13 +17,6 @@ namespace WikipediaReferenceCleaner
             Console.WriteLine(outputFile);
         }
 
-        private static string GetFilepath(string type)
-        {
-            var filename = $"wp-ref-cleaner-{type}.txt";
-            var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            return Path.Combine(desktop, filename);
-        }
-
         private static string ReadFromInputFile()
         {
             var filepath = GetFilepath("input");
@@ -35,6 +28,13 @@ namespace WikipediaReferenceCleaner
             var filepath = GetFilepath("output");
             File.WriteAllText(filepath, processedReferences);
             return filepath;
+        }
+
+        private static string GetFilepath(string type)
+        {
+            var filename = $"wp-ref-cleaner-{type}.txt";
+            var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            return Path.Combine(desktop, filename);
         }
     }
 }

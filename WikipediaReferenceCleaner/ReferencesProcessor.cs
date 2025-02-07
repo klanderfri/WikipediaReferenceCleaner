@@ -119,7 +119,7 @@ namespace WikipediaReferenceCleaner
             {
                 index = heystack.IndexOf(needle, index);
 
-                if(index < 0) { break; }
+                if (index < 0) { break; }
 
                 count++;
                 index++;
@@ -184,7 +184,7 @@ namespace WikipediaReferenceCleaner
 
             var items = reference.Data.OrderBy(item => item.Key, new ReferenceDataSorter());
 
-            foreach(var item in items)
+            foreach (var item in items)
             {
                 refText.AppendLine($"    |{item.Key}={item.Value}");
             }

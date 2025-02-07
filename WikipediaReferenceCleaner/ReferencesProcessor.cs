@@ -128,12 +128,12 @@ namespace WikipediaReferenceCleaner
         {
             var refText = new StringBuilder();
             refText.AppendLine("{{reflist|refs=");
+            refText.AppendLine();
 
             var refGroups = references.GroupBy(r => r.Group);
 
             foreach (var group in refGroups)
             {
-                refText.AppendLine();
                 refText.AppendLine($"# {group.Key}");
                 foreach (var reference in group)
                 {
@@ -142,7 +142,6 @@ namespace WikipediaReferenceCleaner
                 refText.AppendLine();
             }
 
-            refText.AppendLine();
             refText.AppendLine("}}");
 
             return refText.ToString();

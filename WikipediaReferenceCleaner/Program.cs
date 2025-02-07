@@ -8,7 +8,7 @@ namespace WikipediaReferenceCleaner
         {
             var rawReferences = ReadFromInputFile();
 
-            var processor = new ReferencesProcessor();
+            var processor = new RefListReader();
             var processedReferences = processor.ProcessLines(rawReferences);
 
             var outputFile = WriteToOuputFile(processedReferences);

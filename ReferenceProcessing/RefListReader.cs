@@ -2,7 +2,7 @@
 
 namespace ReferenceProcessing
 {
-    public class ReferencesProcessor
+    public class RefListReader
     {
         private readonly List<Reference> references = [];
         private string lastGroup = "";

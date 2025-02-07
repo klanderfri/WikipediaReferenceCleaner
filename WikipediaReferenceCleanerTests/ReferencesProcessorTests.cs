@@ -27,7 +27,7 @@ namespace ReferenceProcessingTests
 
         private static string RunTest(string input)
         {
-            var processor = new ReferencesProcessor();
+            var processor = new RefListReader();
             return processor.ProcessLines(input);
         }
     }

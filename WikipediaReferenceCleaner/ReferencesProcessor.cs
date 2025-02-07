@@ -60,7 +60,7 @@ namespace WikipediaReferenceCleaner
             {
                 Group = lastGroup,
                 Name = GetName(line),
-                CiteType = ConvertToCiteType(GetCiteType(line)),
+                CiteType = GetCiteType(line),
             };
 
             //Extract the data inside the citation.
@@ -123,15 +123,6 @@ namespace WikipediaReferenceCleaner
         {
             return line.IndexOf(tagEnd, tagStartIndex);
         }
-
-        private static CiteType ConvertToCiteType(string citeTypeString) =>
-            citeTypeString.ToLower() switch
-            {
-                "web" => CiteType.Web,
-                "news" => CiteType.News,
-                "press release" => CiteType.PressRelease,
-                _ => throw new NotImplementedException($"The cite type '{citeTypeString}' is unhandled.")
-            };
 
         private static string ConvertReferencesToString(IEnumerable<Reference> references)
         {

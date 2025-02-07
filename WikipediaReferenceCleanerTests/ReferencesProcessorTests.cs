@@ -25,10 +25,12 @@ namespace ReferenceProcessingTests
             Assert.Equal(expected, actual);
         }
 
-        private static string RunTest(string input)
+        private static string RunTest(string rawReferences)
         {
-            var processor = new RefListReader();
-            return processor.ProcessLines(input);
+            var readReferences = RefListReader.ReadReferences(rawReferences);
+            var formatedReferences = RefListWriter.ConvertReferencesToString(readReferences);
+
+            return formatedReferences;
         }
     }
 }

@@ -1,12 +1,11 @@
 ﻿namespace ReferenceProcessing
 {
-    public class RefListReader
+    public static class RefListReader
     {
-        private readonly List<Reference> references = [];
-        private string lastGroup = "";
-
-        public string ProcessLines(string rawRefList)
+        public static List<Reference> ReadReferences(string rawRefList)
         {
+            List<Reference> references = [];
+            string lastGroup = "";
             var index = FindRefListStart(rawRefList);
 
             //Process all lines.
@@ -48,7 +47,8 @@
                     //A reference may span over multiple lines, so update the line.
                     line = rawRefList.AsSpan(index, lengthOfReference);
 
-                    ProcessReference(line);
+                    var reference = ReadReference(line, lastGroup);
+                    references.Add(reference);
 
                     index += lengthOfReference;
                     continue;
@@ -61,7 +61,7 @@
                 throw new NotImplementedException(unknownLineTypeMessage);
             }
 
-            return RefListWriter.ConvertReferencesToString(references);
+            return references;
         }
 
         private static int FindRefListStart(string rawRefList)
@@ -81,7 +81,7 @@
             return index;
         }
 
-        private void ProcessReference(ReadOnlySpan<char> line)
+        private static Reference ReadReference(ReadOnlySpan<char> line, string lastGroup)
         {
             //Extract mandatory data.
             var reference = new Reference()
@@ -110,7 +110,7 @@
                 line = line[referenceDataStart..];
             }
 
-            references.Add(reference);
+            return reference;
         }
 
         private static int GetTagValueEndIndex(ReadOnlySpan<char> line, int tagValueStart)

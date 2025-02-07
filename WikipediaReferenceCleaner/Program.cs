@@ -8,10 +8,10 @@ namespace WikipediaReferenceCleaner
         {
             var rawReferences = ReadFromInputFile();
 
-            var processor = new RefListReader();
-            var processedReferences = processor.ProcessLines(rawReferences);
+            var readReferences = RefListReader.ReadReferences(rawReferences);
+            var formatedReferences = RefListWriter.ConvertReferencesToString(readReferences);
 
-            var outputFile = WriteToOuputFile(processedReferences);
+            var outputFile = WriteToOuputFile(formatedReferences);
 
             Console.WriteLine("The references are processed. The result is found at");
             Console.WriteLine(outputFile);

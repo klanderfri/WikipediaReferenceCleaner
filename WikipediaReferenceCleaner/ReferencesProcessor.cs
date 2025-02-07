@@ -129,7 +129,7 @@ namespace WikipediaReferenceCleaner
             {
                 "web" => CiteType.Web,
                 "news" => CiteType.News,
-                "press-release" => CiteType.PressRelease,
+                "press release" => CiteType.PressRelease,
                 _ => throw new NotImplementedException($"The cite type '{citeTypeString}' is unhandled.")
             };
 

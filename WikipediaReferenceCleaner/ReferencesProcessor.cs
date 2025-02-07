@@ -65,21 +65,15 @@ namespace WikipediaReferenceCleaner
 
             //Extract the data inside the citation.
             var referenceDataStart = line.IndexOf('|');
-            var foundallValues = false;
-            while (!foundallValues)
+            var referenceDataEnd = line.IndexOf('}');
+            while (referenceDataStart < referenceDataEnd)
             {
                 var tagNameStart = referenceDataStart + 1;
                 var tagNameEnd = line.IndexOf('=', tagNameStart);
-                var tagName = line[tagNameStart..tagNameEnd];
+                var tagName = line[tagNameStart..tagNameEnd].Trim();
 
                 var tagValueStart = tagNameEnd + 1;
-                var tagValueEnd = line.IndexOf('|', tagValueStart);
-                if (tagValueEnd < 0)
-                {
-                    //We found the last tag.
-                    tagValueEnd = line.IndexOf('}');
-                    foundallValues = true;
-                }
+                var tagValueEnd = GetTagValueEndIndex(line, tagValueStart);
                 var tagValue = line[tagValueStart..tagValueEnd].Trim();
 
                 reference.Data.Add(tagName, tagValue);
@@ -88,6 +82,50 @@ namespace WikipediaReferenceCleaner
             }
 
             references.Add(reference);
+        }
+
+        private static int GetTagValueEndIndex(string line, int tagValueStart)
+        {
+            string tagValue;
+            int endIndex = tagValueStart;
+            int wikilinkStarts;
+            int wikilinkEnds;
+
+            do
+            {
+                endIndex = line.IndexOf('|', endIndex + 1);
+                if (endIndex < 0)
+                {
+                    //We found the last tag.
+                    endIndex = line.IndexOf('}');
+                }
+
+                tagValue = line[tagValueStart..endIndex];
+
+                wikilinkStarts = CountOccurances(tagValue, "[[");
+                wikilinkEnds = CountOccurances(tagValue, "]]");
+            }
+            while (wikilinkStarts != wikilinkEnds);
+
+            return endIndex;
+        }
+
+        private static int CountOccurances(string heystack, string needle)
+        {
+            var count = 0;
+            var index = 0;
+
+            while (true)
+            {
+                index = heystack.IndexOf(needle, index);
+
+                if(index < 0) { break; }
+
+                count++;
+                index++;
+            }
+
+            return count;
         }
 
         private static string GetName(string line)
@@ -108,20 +146,10 @@ namespace WikipediaReferenceCleaner
 
         private static (int start, int end) GetTagValueSpan(string line, string tagStart, string tagEnd)
         {
-            var startIndex = GetTagValueStartIndex(line, tagStart);
-            var endIndex = GetTagValueEndIndex(line, tagEnd, startIndex);
+            var startIndex = line.IndexOf(tagStart, StringComparison.OrdinalIgnoreCase) + tagStart.Length;
+            var endIndex = line.IndexOf(tagEnd, startIndex);
 
             return (startIndex, endIndex);
-        }
-
-        private static int GetTagValueStartIndex(string line, string tagStart)
-        {
-            return line.IndexOf(tagStart, StringComparison.OrdinalIgnoreCase) + tagStart.Length;
-        }
-
-        private static int GetTagValueEndIndex(string line, string tagEnd, int tagStartIndex)
-        {
-            return line.IndexOf(tagEnd, tagStartIndex);
         }
 
         private static string ConvertReferencesToString(IEnumerable<Reference> references)

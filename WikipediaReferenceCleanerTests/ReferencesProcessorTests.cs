@@ -5,7 +5,7 @@ namespace ReferenceProcessingTests
     public class ReferencesProcessorTests
     {
         [Fact]
-        public void ProcessTwoReferencesTest()
+        public void ProcessShortReferencesTest()
         {
             var input = TestUtils.GetDataFromTestFile("small-reference-list.input.txt");
             var expected = TestUtils.GetDataFromTestFile("small-reference-list.expected-output.txt");

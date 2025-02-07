@@ -17,6 +17,7 @@
                 "url" => 2,
                 "website" => 3,
                 "publisher" => 4,
+                "agency" => 4,
                 "date" => 5,
                 "access-date" => 6,
                 "language" => 7,

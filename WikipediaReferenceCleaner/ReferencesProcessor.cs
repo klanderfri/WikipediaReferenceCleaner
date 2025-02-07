@@ -183,10 +183,16 @@ namespace WikipediaReferenceCleaner
             refText.AppendLine("  {{cite " + reference.CiteType.ToString().ToLower());
 
             var items = reference.Data.OrderBy(item => item.Key, new ReferenceDataSorter());
+            var longestItemName = items
+                .Select(i => i.Key)
+                .Max(k => k.Length);
 
             foreach (var item in items)
             {
-                refText.AppendLine($"    |{item.Key}={item.Value}");
+                refText.Append($"    |");
+                refText.Append(item.Key.PadRight(longestItemName + 1));
+                refText.Append($"= {item.Value}");
+                refText.AppendLine();
             }
 
             refText.Remove(refText.Length - Environment.NewLine.Length, Environment.NewLine.Length);

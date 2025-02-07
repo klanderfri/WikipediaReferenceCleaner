@@ -2,7 +2,7 @@
 
 namespace ReferenceProcessingTests
 {
-    public class ReferencesProcessorTests
+    public class ReferencesReadAndWriteTests
     {
         [Fact]
         public void ProcessShortReferencesTest()

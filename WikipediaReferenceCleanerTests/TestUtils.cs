@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace WikipediaReferenceCleanerTests
+namespace ReferenceProcessingTests
 {
     public static class TestUtils
     {

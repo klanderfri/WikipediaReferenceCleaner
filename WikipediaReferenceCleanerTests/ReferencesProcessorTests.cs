@@ -1,6 +1,6 @@
 ﻿using ReferenceProcessing;
 
-namespace WikipediaReferenceCleanerTests
+namespace ReferenceProcessingTests
 {
     public class ReferencesProcessorTests
     {
@@ -9,7 +9,7 @@ namespace WikipediaReferenceCleanerTests
         {
             var input = TestUtils.GetDataFromTestFile("small-reference-list.input.txt");
             var expected = TestUtils.GetDataFromTestFile("small-reference-list.expected-output.txt");
-            
+
             var actual = RunTest(input);
 
             Assert.Equal(expected, actual);

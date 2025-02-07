@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikipediaReferenceCleaner", "WikipediaReferenceCleaner\WikipediaReferenceCleaner.csproj", "{7FECCABA-35C4-4221-9F7A-AD1C59807DAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikipediaReferenceCleanerTests", "WikipediaReferenceCleanerTests\WikipediaReferenceCleanerTests.csproj", "{EC4B7E6C-2A6F-4561-B720-0F549F4BD7EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceProcessingTests", "WikipediaReferenceCleanerTests\ReferenceProcessingTests.csproj", "{EC4B7E6C-2A6F-4561-B720-0F549F4BD7EF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceProcessing", "ReferenceProcessing\ReferenceProcessing.csproj", "{97B77C91-D06B-4843-A4B1-F37353FD1931}"
 EndProject

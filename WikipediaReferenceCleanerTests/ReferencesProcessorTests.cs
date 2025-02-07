@@ -1,4 +1,4 @@
-﻿using WikipediaReferenceCleaner;
+﻿using ReferenceProcessing;
 
 namespace WikipediaReferenceCleanerTests
 {

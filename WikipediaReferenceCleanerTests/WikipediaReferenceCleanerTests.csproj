@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WikipediaReferenceCleaner\WikipediaReferenceCleaner.csproj" />
+    <ProjectReference Include="..\ReferenceProcessing\ReferenceProcessing.csproj" />
   </ItemGroup>
 
   <ItemGroup>

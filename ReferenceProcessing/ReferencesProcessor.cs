@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace WikipediaReferenceCleaner
+namespace ReferenceProcessing
 {
     public class ReferencesProcessor
     {

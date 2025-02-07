@@ -1,4 +1,6 @@
-﻿namespace WikipediaReferenceCleaner
+﻿using ReferenceProcessing;
+
+namespace WikipediaReferenceCleaner
 {
     internal class Program
     {

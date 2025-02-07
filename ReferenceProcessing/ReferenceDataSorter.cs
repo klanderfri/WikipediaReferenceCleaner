@@ -1,4 +1,4 @@
-﻿namespace WikipediaReferenceCleaner
+﻿namespace ReferenceProcessing
 {
     public class ReferenceDataSorter : IComparer<string>
     {

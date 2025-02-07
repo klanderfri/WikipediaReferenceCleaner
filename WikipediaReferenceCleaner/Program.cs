@@ -16,7 +16,7 @@ namespace WikipediaReferenceCleaner
             Console.WriteLine("Cleaning up references...");
             var formatedReferences = RefListWriter.ConvertReferencesToString(readReferences);
 
-            WriteToOuputFile(formatedReferences);
+            WriteToOutputFile(formatedReferences);
 
             Console.WriteLine("The references was successfully processed.");
         }
@@ -32,7 +32,7 @@ namespace WikipediaReferenceCleaner
             return File.ReadAllText(filepath);
         }
 
-        private static void WriteToOuputFile(string processedReferences)
+        private static void WriteToOutputFile(string processedReferences)
         {
             var filepath = GetFilepath("output");
 

@@ -16,6 +16,7 @@
                 "title" => 1,
                 "url" => 2,
                 "website" => 3,
+                "work" => 3,
                 "publisher" => 4,
                 "agency" => 4,
                 "date" => 5,

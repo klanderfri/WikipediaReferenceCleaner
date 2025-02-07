@@ -1,0 +1,8 @@
+﻿{{reflist|refs=
+# Governments and Agencies  
+<ref name="polisen">{{cite web |title=04 februari 12.33, Skottlossning, Örebro |url=https://polisen.se/aktuellt/handelser/2025/februari/4/04-februari-12.33-skottlossning-orebro/ |date=4 February 2025 |website=polisen.se |publisher=[[Swedish Police Authority]] |access-date=4 February 2025 |language=sv |archive-date=5 February 2025 |archive-url=https://web.archive.org/web/20250205220201/https://polisen.se/aktuellt/handelser/2025/februari/4/04-februari-12.33-skottlossning-orebro/ |url-status=live }}</ref>
+<ref name="regeringen-se">{{Cite press release |url=https://www.regeringen.se/pressmeddelanden/2025/02/statsministern-och-justitieministern-bjuder-in-till-presstraff/ |title=Statsministern och justitieministern bjuder in till pressträff |date=4 February 2025 |website=regeringen.se |language=sv |access-date=5 February 2025 |agency=[[Government of Sweden|Regeringen]]}}</ref>
+
+# Swedish Radio (SR)
+<ref name="sr-csk-i-stabslage">{{Cite news|url=https://www.sverigesradio.se/artikel/just-nu-csk-upp-i-stabslage-efter-skjutningen-i-orebro|title=Tiotal döda i skolskjutning – så stöttar Värmland Örebro|date=4 February 2025|lang=sv|publisher=[[Sveriges Radio]]|access-date=4 February 2025|archive-date=5 February 2025|archive-url=https://web.archive.org/web/20250205061239/https://www.sverigesradio.se/artikel/just-nu-csk-upp-i-stabslage-efter-skjutningen-i-orebro|url-status=live}}</ref>
+}}

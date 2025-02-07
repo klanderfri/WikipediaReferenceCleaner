@@ -24,10 +24,10 @@ namespace WikipediaReferenceCleaner
             return Path.Combine(desktop, filename);
         }
 
-        private static IEnumerable<string> ReadFromInputFile()
+        private static string ReadFromInputFile()
         {
             var filepath = GetFilepath("input");
-            return File.ReadLines(filepath);
+            return File.ReadAllText(filepath);
         }
 
         private static string WriteToOuputFile(string processedReferences)

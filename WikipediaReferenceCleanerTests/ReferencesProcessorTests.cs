@@ -27,10 +27,8 @@ namespace ReferenceProcessingTests
 
         private static string RunTest(string input)
         {
-            var inputLines = input.Split("\r\n", StringSplitOptions.None);
-
             var processor = new ReferencesProcessor();
-            return processor.ProcessLines(inputLines);
+            return processor.ProcessLines(input);
         }
     }
 }

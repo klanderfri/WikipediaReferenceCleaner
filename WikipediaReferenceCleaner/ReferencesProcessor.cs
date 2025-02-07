@@ -172,7 +172,7 @@ namespace WikipediaReferenceCleaner
             }
 
             refText.Remove(refText.Length - Environment.NewLine.Length, Environment.NewLine.Length);
-            refText.Append(" }}</ref>");
+            refText.AppendLine(" }}</ref>");
 
             return refText.ToString();
         }

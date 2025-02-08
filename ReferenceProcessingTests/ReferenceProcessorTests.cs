@@ -19,6 +19,12 @@ namespace ReferenceProcessingTests
             RunTest("small-reference-list.expected-output.txt");
         }
 
+        [Fact]
+        public void FailingTest()
+        {
+            Assert.Fail();
+        }
+
         private static void RunTest(string inputDataFileName)
         {
             var tempFolder = TestUtils.CreateTempFolder();

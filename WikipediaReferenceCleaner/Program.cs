@@ -14,7 +14,7 @@ namespace WikipediaReferenceCleaner
             var outputFilePath = GetFilepath("output");
             var wasSuccessful = processor.ProcessReferences(inputFilePath, outputFilePath);
 
-            WriteResultMessage(wasSuccessful);
+            WriteResultMessage(wasSuccessful)
         }
 
         private static void Messenger_MessageRaised(object? sender, EventArgs e)

@@ -6,16 +6,16 @@ namespace WikipediaReferenceCleaner
     {
         static void Main(string[] args)
         {
-            var messanger = new Messenger();
-            var processor = new ReferenceProcessor(messanger);
-            messanger.MessageRaised += Messanger_MessageRaised;
+            var messenger = new Messenger();
+            var processor = new ReferenceProcessor(messenger);
+            messenger.MessageRaised += Messenger_MessageRaised;
 
             var inputFilePath = GetFilepath("input");
             var outputFilePath = GetFilepath("output");
             processor.ProcessReferences(inputFilePath, outputFilePath);
         }
 
-        private static void Messanger_MessageRaised(object? sender, EventArgs e)
+        private static void Messenger_MessageRaised(object? sender, EventArgs e)
         {
             Console.WriteLine(((MessageArgs)e).Message);
         }

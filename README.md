@@ -15,3 +15,7 @@ The first edition and a MVP (Minimal Viable Product). To use this version:
 1. Put the reflist template in a textfile named *wp-ref-cleaner-input.txt* and put it on the desktop on your computer.
 2. Run the client.
 3. The cleaned wikitext can be found in the file *wp-ref-cleaner-output.txt* on your desktop.
+
+## v0.2
+1. Updated license file with name and year.
+2. Added few console messages to make the process more descriptive.

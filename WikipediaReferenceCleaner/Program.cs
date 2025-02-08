@@ -4,43 +4,30 @@ namespace WikipediaReferenceCleaner
 {
     internal class Program
     {
-        const string Indention = "  ";
-
         static void Main(string[] args)
         {
-            var rawReferences = ReadFromInputFile();
+            var messenger = new Messenger();
+            var processor = new ReferenceProcessor(messenger);
+            messenger.MessageRaised += Messenger_MessageRaised;
 
-            Console.WriteLine("Parsing references...");
-            var readReferences = RefListReader.ReadReferences(rawReferences);
+            var inputFilePath = GetFilepath("input");
+            var outputFilePath = GetFilepath("output");
+            var wasSuccessful = processor.ProcessReferences(inputFilePath, outputFilePath);
 
-            Console.WriteLine("Cleaning up references...");
-            var formatedReferences = RefListWriter.ConvertReferencesToString(readReferences);
-
-            WriteToOutputFile(formatedReferences);
-
-            Console.WriteLine("The references was successfully processed.");
+            WriteResultMessage(wasSuccessful);
         }
 
-        private static string ReadFromInputFile()
+        private static void Messenger_MessageRaised(object? sender, EventArgs e)
         {
-            var filepath = GetFilepath("input");
+            var args = (MessageArgs)e;
+            if (args.IsErrorMessage)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
 
-            Console.WriteLine("Reading references from file at");
-            Console.WriteLine(Indention + filepath);
-            Console.WriteLine(Indention + "...");
+            Console.WriteLine(((MessageArgs)e).Message);
 
-            return File.ReadAllText(filepath);
-        }
-
-        private static void WriteToOutputFile(string processedReferences)
-        {
-            var filepath = GetFilepath("output");
-
-            Console.WriteLine("Writing references to file at");
-            Console.WriteLine(Indention + filepath);
-            Console.WriteLine(Indention + "...");
-
-            File.WriteAllText(filepath, processedReferences);
+            Console.ResetColor();
         }
 
         private static string GetFilepath(string type)
@@ -48,6 +35,24 @@ namespace WikipediaReferenceCleaner
             var filename = $"wp-ref-cleaner-{type}.txt";
             var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             return Path.Combine(desktop, filename);
+        }
+
+        private static void WriteResultMessage(bool wasSuccessful)
+        {
+            Console.WriteLine();
+
+            if (wasSuccessful)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("The references was successfully processed.");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Failed processing references.");
+            }
+
+            Console.ResetColor();
         }
     }
 }

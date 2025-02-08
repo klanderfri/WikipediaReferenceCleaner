@@ -2,9 +2,9 @@
 
 namespace ReferenceProcessing
 {
-    public static class RefListWriter
+    public class RefListWriter(Messenger messenger)
     {
-        public static string ConvertReferencesToString(IEnumerable<Reference> references)
+        public bool ConvertReferencesToString(IEnumerable<Reference> references, out string convertedReferences)
         {
             var refText = new StringBuilder();
             refText.AppendLine("{{reflist|refs=");
@@ -12,19 +12,24 @@ namespace ReferenceProcessing
 
             var refGroups = references.GroupBy(r => r.Group);
 
+            var refCounter = 0;
             foreach (var group in refGroups)
             {
                 refText.AppendLine($"# {group.Key}");
                 foreach (var reference in group)
                 {
                     refText.Append(ConvertReferenceToString(reference));
+                    refCounter++;
                 }
                 refText.AppendLine();
             }
 
             refText.AppendLine("}}");
 
-            return refText.ToString();
+            messenger.SendMessage($"Successfully formatted {refCounter} references.");
+            convertedReferences = refText.ToString();
+
+            return true;
         }
 
         private static string ConvertReferenceToString(Reference reference)

@@ -15,3 +15,14 @@ The first edition and a MVP (Minimal Viable Product). To use this version:
 1. Put the reflist template in a textfile named *wp-ref-cleaner-input.txt* and put it on the desktop on your computer.
 2. Run the client.
 3. The cleaned wikitext can be found in the file *wp-ref-cleaner-output.txt* on your desktop.
+
+## v0.2
+1. Updated license file with name and year.
+2. Added few console messages to make the process more descriptive.
+
+## v0.3
+Made improvements on the message handling.
+1. Moved the messages to an event-based Messenger class that can be subscribed.
+2. Added colour to error- and result-messages.
+3. Changed the code to handle errors by sending a message and returning false, instead of relying on exceptions.
+4. Moved over-arcing processing code to separate class (*ReferenceProcessor*) so only GUI-code remains in the *Program* class.

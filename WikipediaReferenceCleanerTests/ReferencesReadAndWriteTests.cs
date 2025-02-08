@@ -10,9 +10,10 @@ namespace ReferenceProcessingTests
             var input = TestUtils.GetDataFromTestFile("small-reference-list.input.txt");
             var expected = TestUtils.GetDataFromTestFile("small-reference-list.expected-output.txt");
 
-            var actual = RunTest(input);
+            var (readSuccess, formatedRefs) = RunTest(input);
 
-            Assert.Equal(expected, actual);
+            Assert.True(readSuccess);
+            Assert.Equal(expected, formatedRefs);
         }
 
         [Fact]
@@ -20,17 +21,22 @@ namespace ReferenceProcessingTests
         {
             var expected = TestUtils.GetDataFromTestFile("small-reference-list.expected-output.txt");
 
-            var actual = RunTest(expected);
+            var (readSuccess, formatedRefs) = RunTest(expected);
 
-            Assert.Equal(expected, actual);
+            Assert.True(readSuccess);
+            Assert.Equal(expected, formatedRefs);
         }
 
-        private static string RunTest(string rawReferences)
+        private static (bool readSuccess, string formatedRefs) RunTest(string rawReferences)
         {
-            var readReferences = RefListReader.ReadReferences(rawReferences);
-            var formatedReferences = RefListWriter.ConvertReferencesToString(readReferences);
+            var messsenger = new Messenger();
+            var reader = new RefListReader(messsenger);
+            var writer = new RefListWriter(messsenger);
 
-            return formatedReferences;
+            var readSuccessfully = reader.ReadReferences(rawReferences, out List<Reference> readReferences);
+            var formatedReferences = writer.ConvertReferencesToString(readReferences);
+
+            return (readSuccessfully, formatedReferences);
         }
     }
 }

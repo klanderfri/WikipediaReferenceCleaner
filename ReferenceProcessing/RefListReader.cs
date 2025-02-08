@@ -1,12 +1,20 @@
 ﻿namespace ReferenceProcessing
 {
-    public static class RefListReader
+    public class RefListReader(Messenger messenger)
     {
-        public static List<Reference> ReadReferences(string rawRefList)
+        public bool ReadReferences(string rawRefList, out List<Reference> references)
         {
-            List<Reference> references = [];
+            references = [];
             string lastGroup = "";
             var index = FindRefListStart(rawRefList);
+
+            //Ceck that there is a reflist template to place the references in.
+            if (index < 0)
+            {
+                var message = "There seems to be no reflist template in the article.";
+                messenger.SendMessage(message);
+                return false;
+            }
 
             //Process all lines.
             while (true)
@@ -35,7 +43,8 @@
                 if (line.StartsWith("<ref>"))
                 {
                     var refNameMissingMessage = "All references MUST have a 'name' tag.";
-                    throw new InvalidOperationException(refNameMissingMessage);
+                    messenger.SendMessage(refNameMissingMessage);
+                    return false;
                 }
 
                 //Check if we have found a reference.
@@ -58,10 +67,12 @@
                 if (line.StartsWith("}}")) { break; }
 
                 var unknownLineTypeMessage = "Unknown type of line encountered.";
-                throw new NotImplementedException(unknownLineTypeMessage);
+                messenger.SendMessage(unknownLineTypeMessage);
+                return false;
             }
 
-            return references;
+            messenger.SendMessage($"Successfully read {references.Count} references.");
+            return true;
         }
 
         private static int FindRefListStart(string rawRefList)
@@ -70,8 +81,9 @@
 
             if (index < 0)
             {
-                var message = "There seems to be no reflist template in the article.";
-                throw new InvalidOperationException(message);
+                //We can't process the references if there is no reflist
+                //template to place them in.
+                return -1;
             }
 
             index = rawRefList.IndexOf("refs", index);

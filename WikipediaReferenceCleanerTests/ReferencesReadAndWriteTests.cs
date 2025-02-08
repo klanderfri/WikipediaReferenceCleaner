@@ -21,22 +21,22 @@ namespace ReferenceProcessingTests
         {
             var expected = TestUtils.GetDataFromTestFile("small-reference-list.expected-output.txt");
 
-            var (readSuccess, formatedRefs) = RunTest(expected);
+            var (success, formatedRefs) = RunTest(expected);
 
-            Assert.True(readSuccess);
+            Assert.True(success);
             Assert.Equal(expected, formatedRefs);
         }
 
-        private static (bool readSuccess, string formatedRefs) RunTest(string rawReferences)
+        private static (bool success, string formatedRefs) RunTest(string rawReferences)
         {
             var messsenger = new Messenger();
             var reader = new RefListReader(messsenger);
             var writer = new RefListWriter(messsenger);
 
             var readSuccessfully = reader.ReadReferences(rawReferences, out List<Reference> readReferences);
-            var formatedReferences = writer.ConvertReferencesToString(readReferences);
+            var wroteSuccessfully = writer.ConvertReferencesToString(readReferences, out string formatedReferences);
 
-            return (readSuccessfully, formatedReferences);
+            return (readSuccessfully && wroteSuccessfully, formatedReferences);
         }
     }
 }

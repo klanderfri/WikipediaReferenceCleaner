@@ -12,7 +12,7 @@
             if (index < 0)
             {
                 var message = "There seems to be no reflist template in the article.";
-                messenger.SendMessage(message);
+                messenger.SendErrorMessage(message);
                 return false;
             }
 
@@ -43,7 +43,7 @@
                 if (line.StartsWith("<ref>"))
                 {
                     var refNameMissingMessage = "All references MUST have a 'name' tag.";
-                    messenger.SendMessage(refNameMissingMessage);
+                    messenger.SendErrorMessage(refNameMissingMessage);
                     return false;
                 }
 
@@ -67,7 +67,7 @@
                 if (line.StartsWith("}}")) { break; }
 
                 var unknownLineTypeMessage = "Unknown type of line encountered.";
-                messenger.SendMessage(unknownLineTypeMessage);
+                messenger.SendErrorMessage(unknownLineTypeMessage);
                 return false;
             }
 

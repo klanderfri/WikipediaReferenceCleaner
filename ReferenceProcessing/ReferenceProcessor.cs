@@ -4,24 +4,23 @@
     {
         const string Indention = "  ";
 
-        public void ProcessReferences(string inputFilePath, string outputFilePath)
+        public bool ProcessReferences(string inputFilePath, string outputFilePath)
         {
             var rawReferences = ReadFromInputFile(inputFilePath);
 
             messenger.SendMessage("Parsing references...");
             var refReader = new RefListReader(messenger);
             var readSuccessfully = refReader.ReadReferences(rawReferences, out List<Reference> readReferences);
+            if (!readSuccessfully) { return false; }
 
-            if (readSuccessfully)
-            {
-                messenger.SendMessage("Cleaning up references...");
-                var refWriter = new RefListWriter(messenger);
-                var formatedReferences = refWriter.ConvertReferencesToString(readReferences);
+            messenger.SendMessage("Cleaning up references...");
+            var refWriter = new RefListWriter(messenger);
+            var wroteSuccessfully = refWriter.ConvertReferencesToString(readReferences, out string formatedReferences);
+            if (!wroteSuccessfully) { return false; }
 
-                WriteToOutputFile(outputFilePath, formatedReferences);
+            WriteToOutputFile(outputFilePath, formatedReferences);
 
-                messenger.SendMessage("The references was successfully processed.");
-            }
+            return true;
         }
 
         private string ReadFromInputFile(string inputFilepath)

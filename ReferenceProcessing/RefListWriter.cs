@@ -4,7 +4,7 @@ namespace ReferenceProcessing
 {
     public class RefListWriter(Messenger messenger)
     {
-        public string ConvertReferencesToString(IEnumerable<Reference> references)
+        public bool ConvertReferencesToString(IEnumerable<Reference> references, out string convertedReferences)
         {
             var refText = new StringBuilder();
             refText.AppendLine("{{reflist|refs=");
@@ -27,7 +27,9 @@ namespace ReferenceProcessing
             refText.AppendLine("}}");
 
             messenger.SendMessage($"Successfully formatted {refCounter} references.");
-            return refText.ToString();
+            convertedReferences = refText.ToString();
+
+            return true;
         }
 
         private static string ConvertReferenceToString(Reference reference)

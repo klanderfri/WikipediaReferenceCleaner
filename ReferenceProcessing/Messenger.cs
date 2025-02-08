@@ -4,11 +4,15 @@
     {
         public event EventHandler? MessageRaised;
 
-        public void SendMessage(string message)
+        public void SendErrorMessage(string message) =>
+            SendMessage(message, true);
+
+        public void SendMessage(string message, bool IsErrorMessage = false)
         {
             var args = new MessageArgs
             {
-                Message = message
+                Message = message,
+                IsErrorMessage = IsErrorMessage
             };
             SendMessage(args);
         }
